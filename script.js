@@ -21,7 +21,7 @@ const reviews = [
     rating: 4,
     comment: "Good mapping skills, communication ok.",
     reviewerName: "ReviewerTwo",
-    reviewerAvatar: "https://a.ppy.sh/9876543"
+    reviewerAvatar: "https://a.ppy.sh/4452992"
   },
   {
     rating: 3,
