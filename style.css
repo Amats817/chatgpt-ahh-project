@@ -40,6 +40,35 @@ h1, h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* Specific styling for review cards to accommodate reviewer info */
+.review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between reviewer info and review content */
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Space between avatar and name */
+    margin-bottom: 0.5rem; /* Space below reviewer info before rating/comment */
+}
+
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-cyan); /* Small accent border */
+}
+
+.reviewer-name {
+    font-weight: bold;
+    color: var(--text-light);
+    font-size: 1.1em;
+}
+
+
 /* Styles for the main profile card (mapper info and stats) */
 .profile-main-card {
   background-color: var(--card-background);
@@ -143,49 +172,107 @@ h1, h2 {
   letter-spacing: 0.05em;
 }
 
-/* --- Review and Form Sections (retaining existing structure with color palette updates) --- */
-.review-section,
-.form-section {
+/* --- Review and Form Sections --- */
+.review-section {
   margin-top: 2.5rem;
 }
 
-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  background-color: var(--background-dark); /* Darker background for textarea */
-  color: var(--text-light);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-  resize: vertical;
-  margin-top: 1rem;
+/* Styles for the "Leave a Review" form section */
+.form-section {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-button { /* General button style, overridden by .add-influence-button */
-  background-color: var(--accent-pink); /* Accent color for submit button */
+.form-section h2 {
+    margin-bottom: 1.5rem;
+}
+
+.rating-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.rating-input .label {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+textarea {
+  width: calc(100% - 2rem);
+  max-width: 600px;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  resize: vertical;
+  min-height: 100px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 2px rgba(2, 181, 195, 0.3);
+}
+
+.form-section button {
+  background-color: var(--accent-pink);
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  margin-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block; /* Make it a block element to apply margin: auto */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-button:hover {
-  background-color: #d64a93; /* Darker shade of pink on hover */
+.form-section button:hover {
+  background-color: #d64a93;
+  transform: translateY(-1px);
 }
 
-.star {
-  color: #9ca3af; /* Default grey for empty stars */
-  font-size: 1.5rem;
+/* Star styles for rating input */
+#stars .star {
+  color: #9ca3af;
+  font-size: 1.8rem;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  margin: 0 0.1rem;
 }
 
-.star.filled {
-  color: var(--accent-cyan); /* Cyan for filled stars */
+#stars .star.filled {
+  color: var(--accent-cyan);
+}
+
+#stars .star:hover,
+#stars .star:has(~ .star:hover) {
+  color: var(--accent-cyan);
+  transform: scale(1.2);
+}
+
+#stars:not(:hover) .star:not(.filled) {
+    color: #9ca3af;
+    transform: scale(1);
+}
+
+#stars .star.filled {
+  color: var(--accent-cyan);
 }
 
 .review-content {
@@ -194,98 +281,98 @@ button:hover {
 
 /* --- Header Styles --- */
 .main-header {
-  background-color: var(--card-background); /* Darker background for the header */
+  background-color: var(--card-background);
   padding: 1rem 0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2rem; /* Space below the header */
+  margin-bottom: 2rem;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem; /* Space between elements */
-  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .logo {
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--accent-pink);
-  white-space: nowrap; /* Prevent logo from wrapping */
+  white-space: nowrap;
 }
 
-/* New search bar styles */
+/* Redesigned Search Bar Styles */
 .search {
-  display: flex;
-  align-items: center;
-  flex-grow: 1; /* Allow search bar to take available space */
-  max-width: 400px; /* Limit search bar width */
-  border-radius: 0.5rem;
-  overflow: hidden; /* Ensures the button and input share the rounded corner */
-  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+  position: relative; /* Needed for positioning the icon */
+  display: flex; /* Aligns content inside */
+  align-items: center; /* Vertically center content */
+  flex-grow: 1;
+  max-width: 300px; /* Initial width */
+  border-radius: 0.75rem; /* More rounded corners */
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.15); /* Slightly thicker subtle border */
+  transition: max-width 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  height: 48px; /* Fixed height for consistency */
 }
 
 .search__input {
-  font-family: inherit;
-  font-size: 1rem; /* Adjusted to match existing input size */
-  background-color: var(--background-dark); /* Adapted to dark theme */
+  font-family: "Nunito", sans-serif; /* Use your main font */
+  font-size: 1rem;
+  background-color: var(--background-dark);
   border: none;
-  color: var(--text-light); /* Adapted to dark theme */
-  padding: 0.75rem 1rem; /* Adjusted padding */
-  border-radius: 0; /* Removed individual border-radius, handled by parent .search */
-  width: 100%; /* Take full width of its container */
-  transition: all ease-in-out .5s;
-  /* margin-right: -2rem; Removed as it might cause layout issues */
-  outline: none; /* Remove focus outline */
+  color: var(--text-light);
+  padding: 0.75rem 1rem;
+  padding-right: 3rem; /* Make space for the icon */
+  width: 100%;
+  height: 100%; /* Fill parent height */
+  box-sizing: border-box; /* Include padding in width/height */
+  outline: none;
+  transition: background-color 0.3s ease;
 }
 
-.search__input:hover, .search__input:focus {
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.13); /* Retained subtle shadow */
+.search__input::placeholder {
+  color: var(--text-grey);
+  opacity: 0.7; /* Slightly less prominent placeholder */
 }
 
-.search__input:focus {
-  background-color: var(--background-dark); /* Adapted to dark theme */
-}
-
-.search__input::-webkit-input-placeholder {
-  font-weight: 100;
-  color: var(--text-grey); /* Adapted to dark theme */
-}
-
-.search__input:focus + .search__button {
-  background-color: var(--background-dark); /* Adapted to dark theme */
-}
-
-.search__button {
-  border: none;
-  background-color: var(--card-background); /* Adapted to dark theme */
-  margin-top: 0; /* Adjusted, .1em was causing slight misalignment */
-  padding: 0.75rem 1rem; /* Added padding to match input height */
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Added transition for hover effect */
-}
-
-.search__button:hover {
-  background-color: rgba(255, 102, 171, 0.1); /* Using a subtle pink hover */
+/* Focus state for the search container */
+.search:focus-within { /* Use :focus-within for parent styling based on child focus */
+    max-width: 500px; /* Expands on focus */
+    border-color: var(--accent-pink); /* Pink border on focus */
+    box-shadow: 0 0 0 3px rgba(255, 102, 171, 0.3); /* Soft pink glow */
 }
 
 .search__icon {
-  height: 1.3em;
-  width: 1.3em;
-  fill: var(--text-grey); /* Adapted to dark theme */
+  position: absolute; /* Position the icon inside the search bar */
+  right: 1rem; /* Distance from the right edge */
+  height: 1.5em; /* Slightly larger icon */
+  width: 1.5em;
+  fill: var(--text-grey); /* Default grey color */
+  pointer-events: none; /* Make icon unclickable so clicks pass through to input */
+  transition: fill 0.3s ease, transform 0.3s ease;
+  opacity: 0; /* Hidden by default */
 }
+
+/* Show icon on hover or focus of the search container */
+.search:hover .search__icon,
+.search:focus-within .search__icon {
+    opacity: 1; /* Show icon */
+    fill: var(--accent-cyan); /* Change color to cyan on hover/focus */
+    transform: translateX(-0.25rem); /* Slight shift to the left */
+}
+
 
 .auth-buttons {
   display: flex;
-  gap: 0.75rem; /* Space between sign in/out buttons */
+  gap: 0.75rem;
 }
 
 .sign-button {
-  background-color: transparent; /* Transparent background */
+  background-color: transparent;
   color: var(--text-light);
   padding: 0.75rem 1.25rem;
-  border: 1px solid var(--accent-pink); /* Pink border */
+  border: 1px solid var(--accent-pink);
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 0.95rem;
@@ -294,9 +381,85 @@ button:hover {
 }
 
 .sign-button:hover {
-  background-color: rgba(255, 102, 171, 0.1); /* Light pink background on hover */
-  border-color: var(--accent-cyan); /* Cyan border on hover */
+  background-color: rgba(255, 102, 171, 0.1);
+  border-color: var(--accent-cyan);
 }
+
+/* Profile Dropdown Styles (for logged-in users) */
+.profile-dropdown {
+  position: relative;
+  display: none;
+  margin-left: 1rem;
+}
+
+.profile-dropdown-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar-small {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-pink);
+  transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+.profile-dropdown-toggle:hover .profile-avatar-small {
+  border-color: var(--accent-cyan);
+  transform: scale(1.05);
+}
+
+.profile-dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--card-background);
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  z-index: 100;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.profile-dropdown.active .profile-dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.profile-dropdown-item {
+  color: var(--text-light);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-dropdown-item:hover {
+  background-color: rgba(255, 102, 171, 0.1);
+  color: var(--accent-pink);
+}
+
+.profile-dropdown-item.sign-out-button {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+}
+
 
 /* Responsive adjustments for header */
 @media (max-width: 768px) {
@@ -309,14 +472,153 @@ button:hover {
     margin-bottom: 1rem;
   }
 
-  .search { /* Changed from .search-bar to .search */
+  .search {
     width: 100%;
     max-width: none; /* Allow search bar to take full width */
     margin-bottom: 1rem;
   }
 
-  .auth-buttons {
+  .auth-buttons,
+  .profile-dropdown {
     width: 100%;
-    justify-content: center; /* Center buttons */
+    justify-content: center;
+    order: 3;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    position: static;
+  }
+
+  .profile-dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+/* Average Rating Section */
+.average-rating-card {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.average-rating-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.average-rating-display .stat-value {
+    font-size: 3.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.stars-display {
+    font-size: 2rem;
+    color: var(--accent-cyan);
+}
+
+.stars-display .star {
+    color: var(--accent-cyan);
+    font-size: 2rem;
+    cursor: default;
+    transform: none;
+}
+
+.stars-display .star:not(.filled):not(.half-filled) {
+    color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: row; /* Keep elements in a row */
+    justify-content: space-between; /* Space out elements */
+    align-items: center; /* Vertically align them */
+    flex-wrap: wrap; /* Allow wrapping if space is too small */
+  }
+
+  .logo {
+    margin-bottom: 0; /* Remove bottom margin */
+    flex-basis: 100%; /* Make logo take full width initially */
+    text-align: center; /* Center logo text */
+    order: 1; /* Ensure logo is first */
+  }
+
+  .search {
+    width: auto; /* Let content determine width */
+    max-width: calc(100% - 100px); /* Adjust max-width to leave space for avatar/auth */
+    flex-grow: 1; /* Allow search bar to grow */
+    margin-bottom: 0; /* Remove bottom margin */
+    order: 2; /* Position search bar second */
+  }
+
+  .auth-buttons,
+  .profile-dropdown {
+    width: auto; /* Let content determine width */
+    justify-content: flex-end; /* Align buttons/avatar to the end */
+    order: 3; /* Position auth/profile last */
+    margin-left: auto; /* Push to the right */
+    margin-bottom: 0; /* Remove bottom margin */
+    position: static;
+    display: flex; /* Ensure flex for centering within */
+  }
+
+  .profile-dropdown-menu {
+    /* Keep existing styles, they are fine for mobile dropdown appearance */
+    position: absolute; /* Revert to absolute for dropdown menu on smaller screens */
+    top: calc(100% + 0.5rem);
+    right: 0;
+    width: auto; /* Allow menu to size based on content */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+    border-top: none; /* Remove top border if present */
+    border-radius: 0.5rem; /* Revert to rounded corners */
+  }
+
+  /* Adjustments for dropdown toggle to ensure it's still clickable */
+  .profile-dropdown-toggle {
+    margin: 0; /* Remove auto margin */
+  }
+
+  /* To prevent the search bar from becoming too small */
+  .search__input {
+    min-width: 120px; /* Minimum width for the input field */
+  }
+
+  /* Adjust for very small screens if wrapping occurs */
+  @media (max-width: 480px) {
+    .header-content {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .logo {
+      flex-basis: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .search {
+      flex-basis: 100%; /* Take full width on very small screens */
+      max-width: none;
+      margin-bottom: 1rem;
+    }
+
+    .auth-buttons,
+    .profile-dropdown {
+      flex-basis: 100%; /* Take full width on very small screens */
+      justify-content: center;
+    }
+
+    .profile-dropdown-menu {
+        position: static; /* Stack dropdown menu if necessary on tiny screens */
+        width: 100%;
+        box-shadow: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+    }
   }
 }
