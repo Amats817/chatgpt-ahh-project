@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* OSU! inspired color palette from the new image */
+:root {
+  --background-dark: #1f1a23; /* Dark background, slightly purplish-black */
+  --card-background: #2e262c; /* Background for profile and review cards */
+  --accent-pink: #ff66ab; /* Vibrant pink for accents (button, headings) */
+  --accent-cyan: #02b5c3; /* Vibrant cyan for secondary accents (stars, country text) */
+  --accent-green: #88da20; /* Vibrant green (not used heavily, but part of palette) */
+  --text-light: #e0e0eb; /* Light text for contrast */
+  --text-grey: #a0a0a0; /* For labels and less prominent text */
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+h1, h2 {
+  color: var(--accent-pink); /* Primary accent for headings */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Base card styling (for review cards) */
+.card {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles for the main profile card (mapper info and stats) */
+.profile-main-card {
+  background-color: var(--card-background);
+  border-radius: 0.75rem;
+  padding: 2.5rem; /* More padding for this main section */
+  margin-bottom: 2.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* More prominent shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text within this card */
+}
+
+.profile-avatar-large {
+  width: 140px; /* Larger avatar */
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent-pink); /* Pink border */
+  box-shadow: 0 0 0 8px rgba(255, 102, 171, 0.2), /* Subtle glow */
+              0 0 0 16px rgba(2, 181, 195, 0.1); /* Secondary glow */
+  margin-bottom: 1.5rem; /* Space below avatar */
+}
+
+.mapper-header-info {
+  margin-bottom: 2rem; /* Space below header info before stats */
+}
+
+.mapper-name-large {
+  font-size: 2.5rem; /* Very large font for name */
+  font-weight: 800; /* Extra bold */
+  color: var(--text-light); /* White for the name */
+  margin-bottom: 0.5rem;
+}
+
+.country-info {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center flag and country name */
+  font-size: 1.1rem;
+  color: var(--text-grey); /* Lighter grey for country info */
+  margin-bottom: 1.5rem; /* Space below country info */
+}
+
+.country-flag-large {
+  width: 24px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 0.5rem; /* Space between flag and name */
+}
+
+.add-influence-button {
+  background: none;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-light);
+  /* Gradient border for the button */
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to right, var(--accent-pink), var(--accent-cyan));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none; /* Remove default outline */
+}
+
+.add-influence-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 102, 171, 0.3); /* Add shadow on hover */
+}
+
+.mapper-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 2rem; /* Space between grid items */
+  width: 100%; /* Take full width of its parent */
+  max-width: 500px; /* Max width for the grid for better readability */
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 3rem; /* Very large numbers */
+  font-weight: 900; /* Even bolder */
+  color: var(--accent-pink); /* Pink for numbers */
+  line-height: 1; /* Reduce line height */
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-grey); /* Grey for labels */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Review and Form Sections (retaining existing structure with color palette updates) --- */
+.review-section,
+.form-section {
+  margin-top: 2.5rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: var(--background-dark); /* Darker background for textarea */
+  color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  resize: vertical;
+  margin-top: 1rem;
+}
+
+button { /* General button style, overridden by .add-influence-button */
+  background-color: var(--accent-pink); /* Accent color for submit button */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d64a93; /* Darker shade of pink on hover */
+}
+
+.star {
+  color: #9ca3af; /* Default grey for empty stars */
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: var(--accent-cyan); /* Cyan for filled stars */
+}
+
+.review-content {
+    flex: 1;
+}
+
+/* --- Header Styles --- */
+.main-header {
+  background-color: var(--card-background); /* Darker background for the header */
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem; /* Space below the header */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem; /* Space between elements */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-pink);
+  white-space: nowrap; /* Prevent logo from wrapping */
+}
+
+/* New search bar styles */
+.search {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Allow search bar to take available space */
+  max-width: 400px; /* Limit search bar width */
+  border-radius: 0.5rem;
+  overflow: hidden; /* Ensures the button and input share the rounded corner */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: 1rem; /* Adjusted to match existing input size */
+  background-color: var(--background-dark); /* Adapted to dark theme */
+  border: none;
+  color: var(--text-light); /* Adapted to dark theme */
+  padding: 0.75rem 1rem; /* Adjusted padding */
+  border-radius: 0; /* Removed individual border-radius, handled by parent .search */
+  width: 100%; /* Take full width of its container */
+  transition: all ease-in-out .5s;
+  /* margin-right: -2rem; Removed as it might cause layout issues */
+  outline: none; /* Remove focus outline */
+}
+
+.search__input:hover, .search__input:focus {
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.13); /* Retained subtle shadow */
+}
+
+.search__input:focus {
+  background-color: var(--background-dark); /* Adapted to dark theme */
+}
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 100;
+  color: var(--text-grey); /* Adapted to dark theme */
+}
+
+.search__input:focus + .search__button {
+  background-color: var(--background-dark); /* Adapted to dark theme */
+}
+
+.search__button {
+  border: none;
+  background-color: var(--card-background); /* Adapted to dark theme */
+  margin-top: 0; /* Adjusted, .1em was causing slight misalignment */
+  padding: 0.75rem 1rem; /* Added padding to match input height */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Added transition for hover effect */
+}
+
+.search__button:hover {
+  background-color: rgba(255, 102, 171, 0.1); /* Using a subtle pink hover */
+}
+
+.search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: var(--text-grey); /* Adapted to dark theme */
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 0.75rem; /* Space between sign in/out buttons */
+}
+
+.sign-button {
+  background-color: transparent; /* Transparent background */
+  color: var(--text-light);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--accent-pink); /* Pink border */
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sign-button:hover {
+  background-color: rgba(255, 102, 171, 0.1); /* Light pink background on hover */
+  border-color: var(--accent-cyan); /* Cyan border on hover */
+}
+
+/* Responsive adjustments for header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
+  }
+
+  .search { /* Changed from .search-bar to .search */
+    width: 100%;
+    max-width: none; /* Allow search bar to take full width */
+    margin-bottom: 1rem;
+  }
+
+  .auth-buttons {
+    width: 100%;
+    justify-content: center; /* Center buttons */
+  }
+}
